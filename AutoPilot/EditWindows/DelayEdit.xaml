@@ -1,0 +1,76 @@
+﻿<Window x:Class="EditorTest.EditViews.DelayEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EditorTest.EditViews"
+        mc:Ignorable="d" Icon="/Images/Logo.png"
+        Title="DelayEdit" Height="370" Width="400">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="#D9D9D9"/>
+            <Setter Property="BorderBrush" Value="#D9D9D9"/>
+            <Setter Property="Height" Value="35"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="Width" Value="150"></Setter>
+            <Setter Property="TextAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        </Style>
+    </Window.Resources>
+    <StackPanel
+        >
+        <StackPanel
+            
+            Background="{StaticResource DunkelBlau}">
+        <StackPanel
+            Height="100"
+            Orientation="Horizontal"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            
+        >
+            <Image Source="../Images/timer.png"
+                   Width="30"></Image>
+            <Label FontSize="40"
+                   VerticalAlignment="Center"
+                   Margin="10"
+                   FontWeight="Bold">Delay</Label>
+
+        </StackPanel>
+        </StackPanel>
+        
+        <StackPanel Orientation="Horizontal"
+                    
+                    Margin="10"
+                    HorizontalAlignment="Center">
+            <Label FontSize="20" FontWeight="Bold"
+            >Millisekunden:</Label>
+            <TextBox 
+                HorizontalAlignment="Center"
+                x:Name="timeTextBox"></TextBox>
+
+        </StackPanel>
+
+
+        
+            <Label FontSize="20" FontWeight="Bold"
+                   Margin="45,10"
+            >Kommentar:</Label>
+            <TextBox Width="290" TextAlignment="Left"
+                     x:Name="CommentTextBox"></TextBox>
+        
+
+
+        <Button Background="#9EA7AF" Opacity="0.8" Padding="5"
+                x:Name="t_save" HorizontalAlignment="Center"  VerticalAlignment="Center"
+                Width="200"  Click="Save" Margin="20"
+                FontSize="20" Foreground="Black" FontWeight="Bold" Content="Speichern">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="3"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+    </StackPanel>
+</Window>

@@ -1,0 +1,107 @@
+﻿<UserControl x:Class="AutoPilot.Views.Home"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AutoPilot.Views"
+      mc:Ignorable="d" 
+      d:DesignWidth="1200" d:DesignHeight="675">
+
+    <Grid Background="{StaticResource Hintergrund}">
+        <Grid.ColumnDefinitions>
+            <!-- Label soll 25% der Breite einnehmen -->
+            <ColumnDefinition Width="1*"/>
+
+            <!-- Leerer Raum mit 75% der Breite -->
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel
+            Orientation="Vertical"
+            Grid.Column="0"
+            Background="{StaticResource HellBlau}">
+            <Button Background="{StaticResource DunkelBlau}"  BorderBrush="Transparent" Click="HomeClicked" >
+                <Image HorizontalAlignment="Center"
+                       Source="/AutoPilot;component/Images/Überschrift.png"
+                       Visibility="Visible"
+                       Stretch="UniformToFill"
+                       Margin="10,30"
+                />
+
+            </Button>
+            <Button
+                Padding="0,10"
+                Margin="0,15,0,0"
+                Click="DataClick"
+                Command="{Binding GotoViewData1}"
+                Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                VerticalAlignment="Center"
+                FontWeight="Bold"
+                FontSize="30"
+            >
+                Datensätze
+            </Button>
+            <Button
+                Padding="0,10"
+                Click="RecorderClick"
+                Command="{Binding GotoViewData1}"
+                Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                VerticalAlignment="Center"
+                FontWeight="Bold"
+                FontSize="30"
+            >
+                Recorder
+            </Button>
+            <Button
+                Padding="0,10"
+                Click="EditorClick"
+                Command="{Binding GotoViewEditor}"
+                Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                VerticalAlignment="Center"
+                FontWeight="Bold"
+                FontSize="30"
+            >
+                Editor
+            </Button>
+            <Button
+                Padding="0,10"
+                Click="ExecutorClick"
+                Command="{Binding GotoViewData1}"
+                Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                VerticalAlignment="Center"
+                FontWeight="Bold"
+                FontSize="30"
+            >
+                Executor
+            </Button>
+            <Button
+                Padding="0,10"
+                Click="SettingsClick"
+                Command="{Binding GotoViewData1}"
+                Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                VerticalAlignment="Center"
+                FontWeight="Bold"
+                FontSize="30"
+            >
+                Einstellungen
+            </Button>
+            
+        </StackPanel>
+        <Image
+            Source="/Images/Logo2.png"
+            Width="130"
+            VerticalAlignment="Bottom"
+        />
+        <Button Grid.Column="1" FontSize="49" Click="Test">Test</Button>
+    </Grid>
+</UserControl>

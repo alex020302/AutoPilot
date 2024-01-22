@@ -1,0 +1,228 @@
+﻿<UserControl x:Class="AutoPilot.Views.Editor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AutoPilot.Views"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
+             xmlns:autoPilot="clr-namespace:AutoPilot"
+             mc:Ignorable="d" 
+             d:DesignWidth="1200" d:DesignHeight="675">
+    <UserControl.Resources>
+        <Style TargetType="ComboBox">
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Height" Value="40"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="MaxDropDownHeight" Value="205"/>
+            <Setter Property="Background" Value="#9EA7AF"/>
+        </Style>
+        <Style TargetType="ComboBoxItem">
+            <Setter Property="Opacity" Value="1"/>
+            <Setter Property="Background" Value="#9EA7AF"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid Background="{StaticResource Hintergrund}">
+        <Grid.ColumnDefinitions>
+            <!-- Label soll 25% der Breite einnehmen -->
+            <ColumnDefinition Width="1*"/>
+
+            <!-- Leerer Raum mit 75% der Breite -->
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel
+            Orientation="Vertical"
+            Grid.Column="0"
+            Background="{StaticResource HellBlau}">
+            <Button Background="{StaticResource DunkelBlau}"  BorderBrush="Transparent" Click="HomeClicked" >
+                <Image HorizontalAlignment="Center"
+                       Source="/AutoPilot;component/Images/Überschrift.png"
+                       Visibility="Visible"
+                       Stretch="UniformToFill"
+                       Margin="10,30"
+                />
+
+            </Button>
+            <Button
+                Padding="0,10"
+                Margin="0,15,0,0"
+                
+                
+                Click="DataClick"
+                Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                VerticalAlignment="Center"
+                FontWeight="Bold"
+                FontSize="30"
+            >
+                Datensätze
+            </Button>
+            <Button
+                Padding="0,10"
+                Click="RecorderClick"
+                Command="{Binding GotoViewData1}"
+                Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                VerticalAlignment="Center"
+                FontWeight="Bold"
+                FontSize="30"
+            >
+                Recorder
+            </Button>
+            <Button
+                Padding="0,10"
+                Click="EditorClick"
+                Command="{Binding GotoViewEditor}"
+                Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                VerticalAlignment="Center"
+                FontWeight="Bold"
+                FontSize="30"
+            >
+                Editor
+            </Button>
+            <Button
+                Padding="0,10"
+                Click="ExecutorClick"
+                Command="{Binding GotoViewData1}"
+                Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                VerticalAlignment="Center"
+                FontWeight="Bold"
+                FontSize="30"
+            >
+                Executor
+            </Button>
+            <Button
+                Padding="0,10"
+                Click="SettingsClick"
+                Command="{Binding GotoViewData1}"
+                Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                VerticalAlignment="Center"
+                FontWeight="Bold"
+                FontSize="30"
+            >
+                Einstellungen
+            </Button>
+
+        </StackPanel>
+        <Image
+            Source="/Images/Logo2.png"
+            Width="130"
+            VerticalAlignment="Bottom"
+        />
+
+        <StackPanel Grid.Column="1"
+                    Orientation="Vertical"
+                    VerticalAlignment="Center">
+            <Label Grid.Column="1" FontSize="48"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Padding="10"
+                   FontWeight="Bold">Editor</Label>
+
+            <ListBox x:Name="ActionsListBox" ItemsSource="{Binding Actions}" MaxWidth="700" Height="400" MouseDoubleClick="ListBox_MouseDoubleClick"/>
+
+            <StackPanel
+                Orientation="Horizontal"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+                <Button Background="#9EA7AF" Opacity="0.8" Padding="5"
+                        x:Name="t_open" HorizontalAlignment="Center"  VerticalAlignment="Center"
+                        Width="50"  Click="OpenFile" Margin="10"
+                        FontSize="20" Foreground="Black" FontWeight="Bold">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="3"/>
+                        </Style>
+                    </Button.Resources>
+                    <Image HorizontalAlignment="Center"
+                           Source="/AutoPilot;component/Images/folder.png"
+                           Visibility="Visible"
+                           Stretch="UniformToFill"
+                           Width="30"
+                    />
+                </Button>
+                <ComboBox x:Name="c_Action" Width="200" VerticalAlignment="Center"
+                          Background="#9EA7AF"
+                          >
+                    <system:String>MouseClick</system:String>
+                    <system:String>Delay</system:String>
+                    <system:String>TextEmulation</system:String>
+                    <system:String>DataInput</system:String>
+                </ComboBox>
+
+                <Button Background="#9EA7AF" Opacity="0.8" Padding="5"
+                        x:Name="t_add" HorizontalAlignment="Center"  VerticalAlignment="Center"
+                        Width="60"  Click="Add" Margin="10"
+                        FontSize="20" Foreground="Black" FontWeight="Bold" Content="+">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="3"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+
+                <Button Background="#9EA7AF" Opacity="0.8"
+                        x:Name="t_delete" HorizontalAlignment="Center"  VerticalAlignment="Center"
+                        Width="50"  Click="delete" Margin="10"
+                        FontSize="20" Foreground="Black" FontWeight="Bold" Padding="5">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="3"/>
+                        </Style>
+                    </Button.Resources>
+                    <Image HorizontalAlignment="Center"
+                           Source="/AutoPilot;component/Images/delete.png"
+                           Visibility="Visible"
+                           Stretch="UniformToFill"
+                           Width="30"
+                    />
+                </Button>
+
+                <Button Background="#9EA7AF" Opacity="0.8" Padding="5"
+                        x:Name="t_save" HorizontalAlignment="Center"  VerticalAlignment="Center"
+                        Width="120"  Click="save" Margin="10"
+                        FontSize="20" Foreground="Black" FontWeight="Bold" Content="Speichern">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="3"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+                <Button Background="#9EA7AF" Opacity="0.8" Padding="5"
+                        x:Name="click2" HorizontalAlignment="Center"  VerticalAlignment="Center"
+                        Width="120"  Click="Execute" Margin="10"
+                        FontSize="20" Foreground="Black" FontWeight="Bold" Content="Execute">
+                    <Button.Resources>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="CornerRadius" Value="3"/>
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+            </StackPanel>
+            <Button Background="#9EA7AF" Opacity="0.8" Padding="5"
+                    x:Name="click" HorizontalAlignment="Center"  VerticalAlignment="Center"
+                    Width="120"  Click="Help" Margin="10"
+                    FontSize="20" Foreground="Black" FontWeight="Bold" Content="Help">
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius" Value="3"/>
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
+
+
+    </Grid>
+</UserControl>
