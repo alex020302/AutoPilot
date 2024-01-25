@@ -1,11 +1,9 @@
 ﻿using ClosedXML.Excel;
-using Microsoft.Win32;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Windows;
 using AutoPilot.Actions;
 
 namespace AutoPilot
@@ -77,6 +75,8 @@ namespace AutoPilot
                     return CreateActionFromJsonObject<TextEmulation>(jsonObject);
                 case "DataInput":
                     return CreateActionFromJsonObject<DataInput>(jsonObject);
+                case "Link":
+                    return CreateActionFromJsonObject<Link>(jsonObject);
                 // Weitere Aktionstypen hinzufügen, wenn nötig
                 default:
                     return null; // Unbekannter Aktionstyp
@@ -109,6 +109,9 @@ namespace AutoPilot
 
                 case DataInput dataInput when jsonObject.ContainsKey("Column"):
                     dataInput.Column = Convert.ToInt32(jsonObject["Column"]);
+                    break;
+                case Link link when jsonObject.ContainsKey("Url"):
+                    link.Url = Convert.ToString(jsonObject["Url"]);
                     break;
             }
 

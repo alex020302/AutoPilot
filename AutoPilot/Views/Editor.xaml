@@ -158,6 +158,7 @@
                     <system:String>Delay</system:String>
                     <system:String>TextEmulation</system:String>
                     <system:String>DataInput</system:String>
+                    <system:String>Link</system:String>
                 </ComboBox>
 
                 <Button Background="#9EA7AF" Opacity="0.8" Padding="5"
@@ -211,7 +212,7 @@
                 </Button>
 
             </StackPanel>
-            <Button Background="#9EA7AF" Opacity="0.8" Padding="5"
+            <Button Background="#9EA7AF" Opacity="0.8" Padding="5" Visibility="Visible"
                     x:Name="click" HorizontalAlignment="Center"  VerticalAlignment="Center"
                     Width="120"  Click="Help" Margin="10"
                     FontSize="20" Foreground="Black" FontWeight="Bold" Content="Help">

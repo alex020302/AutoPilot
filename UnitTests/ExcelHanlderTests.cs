@@ -33,13 +33,14 @@ namespace UnitTests
             {
                 Console.WriteLine(
                     $"Erfolg: Anzahl der verwendeten Zeilen stimmt überein. Path: {TestPath}, Aktuelle Anzahl an Reihen: {actualUsedRows}");
+                Assert.Pass();
             }
             else
             {
                 Assert.Fail(
                     $"Fehler: Anzahl der verwendeten Zeilen stimmt nicht überein. Path: {TestPath}, Aktuelle Anzahl an Reihen: {actualUsedRows}");
+                Assert.Fail();
             }
-            //NUnit.Framework.Assert.AreEqual(expectedUsedRows, actualUsedRows, "Fehler: Anzahl der verwendeten Zeilen stimmt nicht überein. Path: "+TestPath+" Aktuelle Anzahl an Reihen: "+actualUsedRows);
         }
 
         [Test]
@@ -52,10 +53,12 @@ namespace UnitTests
             if (actuelCellConten == expectedCellConten)
             {
                 Console.WriteLine($"Erfolg: Inhalt einer Zelle konnte extrahiert werden. Path: {TestPath} Inhalt der Zelle: {actuelCellConten}, Zuerwartender Inhalt: B");
+                Assert.Pass();
             }
             else
             {
                 Console.WriteLine($"Fehler: Inhalt einer Zelle konnte nicht extrahiert werden. Path: {TestPath}, Inhalt der Zelle: {actuelCellConten}, Zuerwartender Inhalt: B");
+                Assert.Fail();
             }
         }
 
@@ -71,13 +74,24 @@ namespace UnitTests
                 if (lExcelHandler.GetCellFromExcel(WrittenExcelFilePath, 1,2) == "Variable2")
                 {
                     Console.WriteLine($"Erfolg: Es wurde ExcelFile erstellt. Path: {WrittenExcelFilePath}, Und der Inhalt der Zellen passt, Beweis: {lExcelHandler.GetCellFromExcel(WrittenExcelFilePath,1,2)}");
+                    Assert.Pass();
                 }
             }
             else
             {
                 Console.WriteLine($"Fehler: Es wurde keine ExcelFile erstellt. Path: {WrittenExcelFilePath}");
+                Assert.Fail();
             }
-            
+        }
+
+        private DataGrid CreateTestDataGrid()
+        {
+            DataGrid dataGrid = new DataGrid();
+
+            dataGrid.Columns.Add(new DataGridTextColumn { Header = "Variable1", Binding = new Binding("Variable1") });
+            dataGrid.Columns.Add(new DataGridTextColumn { Header = "Variable2", Binding = new Binding("Variable2") });
+
+            return dataGrid;
         }
 
         [TearDown]
@@ -87,16 +101,6 @@ namespace UnitTests
             {
                 File.Delete(WrittenExcelFilePath);
             }
-        }
-        
-        private DataGrid CreateTestDataGrid()
-        {
-            DataGrid dataGrid = new DataGrid();
-
-            dataGrid.Columns.Add(new DataGridTextColumn { Header = "Variable1", Binding = new Binding("Variable1") });
-            dataGrid.Columns.Add(new DataGridTextColumn { Header = "Variable2", Binding = new Binding("Variable2") });
-
-            return dataGrid;
         }
     }
 }

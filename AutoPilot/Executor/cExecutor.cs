@@ -6,32 +6,22 @@ namespace AutoPilot.Executor
     public class cExecutor
     {
         ObservableCollection<Action> Actions;
-        private ExcelHandler lExcelHandler = new ExcelHandler();
-        private JsonHandler lJsonHandler = new JsonHandler();
+        private ExcelHandler _lExcelHandler = new ExcelHandler();
+        private JsonHandler _lJsonHandler = new JsonHandler();
 
         public async void run(ObservableCollection<FilePaths> pPathsList)
         {
             foreach (var Paths in pPathsList)
             {
-                Actions = lJsonHandler.ReadData(Paths.JsonFilePath);
+                Actions = _lJsonHandler.ReadData(Paths.JsonFilePath);
 
                 if (Paths.ExcelFilePath == null)
                 {
-                    foreach (var action in Actions)
-                    {
-                        if (action is Delay delayAction)
-                        {
-                            await delayAction.Execute();
-                        }
-                        else
-                        {
-                            action.Execute();
-                        }
-                    }
+                    run(Actions);
                 }
                 else
                 {
-                    int usedRows = lExcelHandler.GetNumberOfUsedRows(Paths.ExcelFilePath);
+                    int usedRows = _lExcelHandler.GetNumberOfUsedRows(Paths.ExcelFilePath);
                     for (int i = 1 + 1; i < usedRows + 1; i++)
                     {
                         foreach (var action in Actions)

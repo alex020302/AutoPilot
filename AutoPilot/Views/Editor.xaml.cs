@@ -5,12 +5,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using EditorTest.EditViews;
 using System.Collections.ObjectModel;
-using System.IO;
-using ClosedXML.Excel;
-using DocumentFormat.OpenXml.Drawing.Diagrams;
-using DocumentFormat.OpenXml.Wordprocessing;
+using AutoPilot.EditWindows;
 using Microsoft.Win32;
-using Newtonsoft.Json;
 
 
 namespace AutoPilot.Views
@@ -40,7 +36,6 @@ namespace AutoPilot.Views
 
             if (selectedAction != null)
             {
-                // Typ der Aktion überprüfen und entsprechend handeln
                 if (selectedAction is MouseClick)
                 {
                     // Verarbeitung
@@ -71,7 +66,6 @@ namespace AutoPilot.Views
                     // Hinzufügen der aktualisierten Aktion an derselben Position
                     ViewModel.Actions.Insert(selectedIndex, delayFenster.zuBearbeiten);
                 }
-                // Typ der Aktion überprüfen und entsprechend handeln
                 else if (selectedAction is TextEmulation)
                 {
                     // Verarbeitung
@@ -87,12 +81,26 @@ namespace AutoPilot.Views
                     // Hinzufügen der aktualisierten Aktion an derselben Position
                     ViewModel.Actions.Insert(selectedIndex, editFenster.zuBearbeiten);
                 }
-                // Typ der Aktion überprüfen und entsprechend handeln
                 else if (selectedAction is DataInput)
                 {
                     // Verarbeitung
                     DataInput data = (DataInput)selectedAction;
                     DataInputEdit editFenster = new DataInputEdit(data);
+                    editFenster.ShowDialog();
+
+                    // Speichern derIndexposition der ausgewählten Aktion
+                    int selectedIndex = ViewModel.Actions.IndexOf(selectedAction);
+
+                    // Entfernen der alten Aktion
+                    ViewModel.Actions.RemoveAt(selectedIndex);
+                    // Hinzufügen der aktualisierten Aktion an derselben Position
+                    ViewModel.Actions.Insert(selectedIndex, editFenster.zuBearbeiten);
+                }
+                else if (selectedAction is Link)
+                {
+                    // Verarbeitung
+                    Link link = (Link)selectedAction;
+                    LinkEdit editFenster = new LinkEdit(link);
                     editFenster.ShowDialog();
 
                     // Speichern derIndexposition der ausgewählten Aktion
@@ -163,6 +171,16 @@ namespace AutoPilot.Views
 
                     // Neue Aktion hinzufügen
                     ViewModel.Actions.Insert(selectedIndex + 1, newDataInput);
+                    break;
+                case "Link":
+                    Link newLink = new Link();
+
+                    // Bearbeitungsfenster öffnen um Eigenschaften festzulegen
+                    LinkEdit linkEdit = new LinkEdit(newLink);
+                    linkEdit.ShowDialog();
+
+                    // Neue Aktion hinzufügen
+                    ViewModel.Actions.Insert(selectedIndex + 1, newLink);
                     break;
 
                 default:

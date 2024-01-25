@@ -1,7 +1,5 @@
 ﻿using AutoPilot.Actions;
 using NUnit.Framework;
-using System;
-using System.Threading.Tasks;
 
 namespace UnitTests
 {
@@ -19,7 +17,7 @@ namespace UnitTests
                 Comment = "Test MouseClick"
             };
 
-            Assert.AreEqual(mouseClick.Y_Coordinate, 200, "MouseClick test passed");
+            Assert.AreEqual(mouseClick.Y_Coordinate, 200, "TestMouseClick() hasn't passed");
         }
 
         [Test]
@@ -31,9 +29,8 @@ namespace UnitTests
                 Comment = "Test Delay"
             };
 
-            Assert.AreEqual(delay.Milliseconds, 1000, "Delay test passed");
+            Assert.AreEqual(delay.Milliseconds, 1000, "TestDelay() hasn't passed");
         }
-
 
         [Test]
         public void TestTextEmulation()
@@ -44,7 +41,7 @@ namespace UnitTests
                 Comment = "Test TextEmulation"
             };
 
-            Assert.AreEqual(textEmulation.Text, "Test", "TextEmulation test passed");
+            Assert.AreEqual(textEmulation.Text, "Test", "TestTextEmulation() hasn't passed");
         }
 
         [Test]
@@ -58,7 +55,7 @@ namespace UnitTests
                 Comment = "Test DataInput"
             };
 
-            Assert.AreEqual(dataInput.Column, 2, "DataInput test passed");
+            Assert.AreEqual(dataInput.Column, 2, "TestDataInput() hasn't passed");
         }
     }
 }

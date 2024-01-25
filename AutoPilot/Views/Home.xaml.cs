@@ -1,17 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
+using System.Security.Policy;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using AutoPilot.Actions;
 using WindowsInput.Native;
 
@@ -26,16 +18,6 @@ namespace AutoPilot.Views
         {
             InitializeComponent();
         }
-
-
-
-
-
-
-
-
-
-
 
         /// <summary>
         /// Navigation
@@ -109,14 +91,27 @@ namespace AutoPilot.Views
 
         private void SettingsClick(object sender, RoutedEventArgs e)
         {
-
+            // TODO ?
         }
 
         private async void Test(object sender, RoutedEventArgs e)
         {
+            //string url = "https://y2nb.com/en/download";
+            //Process.Start(new ProcessStartInfo("cmd", $"/c start {url}") { CreateNoWindow = true });
+            
             Delay d = new Delay();
-            d.Milliseconds=2000;
-            d.Execute();
+            d.Milliseconds = 2000;
+            await d.Execute();
+
+            SpecialKey keyCombinationAction = new SpecialKey()
+            {
+                KeyCodes = new List<VirtualKeyCode> {VirtualKeyCode.LWIN },
+                Comment = "Simultaneous key press example"
+            };
+            keyCombinationAction.AddCharToKeyCodes('d');
+            await keyCombinationAction.Execute();
+
+
 
         }
     }
