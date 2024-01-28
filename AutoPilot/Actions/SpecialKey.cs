@@ -1,24 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using DocumentFormat.OpenXml.AdditionalCharacteristics;
 using WindowsInput.Native;
 using WindowsInput;
 
 namespace AutoPilot.Actions
 {
-    public enum SpecialKeyType
-    {
+    public enum KeyType
+    { 
+        Windows = VirtualKeyCode.LWIN,
         Enter = VirtualKeyCode.RETURN,
-        Spacebar,
-        WindowsKey
+        Spacebar = VirtualKeyCode.SPACE,
+        Control = VirtualKeyCode.CONTROL,
+        Shift = VirtualKeyCode.SHIFT,
+        Tab = VirtualKeyCode.TAB,
+        Delete = VirtualKeyCode.DELETE
     }
 
     public class SpecialKey : Action
     {
-        public List<VirtualKeyCode> KeyCodes { get; set; }
+        public string ActionType { get; } = "SpecialKey";
+        public List<VirtualKeyCode> KeyCodes { get; set; } = new List<VirtualKeyCode>();
+        
 
         public override string ToString()
         {
@@ -29,28 +33,31 @@ namespace AutoPilot.Actions
         {
             InputSimulator simulator = new InputSimulator();
 
-            // Überprüfe, ob es mindestens einen KeyCode gibt
             if (KeyCodes.Count > 0)
             {
-                // Erstelle eine Liste von Tasks für das Drücken jeder Taste
+                // Erstellen einer Liste von Tasks für das Drücken jeder Taste
                 var keyPressTasks = KeyCodes.Select(keyCode => Task.Run(() => simulator.Keyboard.KeyDown(keyCode))).ToList();
 
-                // Warte auf das Ende aller Tasks, um sicherzustellen, dass alle Tasten gedrückt sind
+                // Warten auf das Ende aller Tasks, um sicherzustellen, dass alle Tasten gedrückt sind
                 await Task.WhenAll(keyPressTasks);
 
-                // Warte hier, um sicherzustellen, dass alle Tasten gedrückt bleiben
-                await Task.Delay(100);
+                // Warten um sicherzustellen, dass alle Tasten gedrückt bleiben
+                await Task.Delay(300);
 
-                // Erstelle eine Liste von Tasks für das Loslassen jeder Taste
+                // Erstellen einer Liste von Tasks für das Loslassen jeder Taste
                 var keyReleaseTasks = KeyCodes.Select(keyCode => Task.Run(() => simulator.Keyboard.KeyUp(keyCode))).ToList();
 
-                // Warte auf das Ende aller Tasks, um sicherzustellen, dass alle Tasten losgelassen sind
+                // Warten auf das Ende aller Tasks, um sicherzustellen, dass alle Tasten losgelassen sind
                 await Task.WhenAll(keyReleaseTasks);
             }
             else
             {
                 throw new InvalidOperationException("No key codes specified for the combination.");
             }
+        }
+        public void AddKeyToKeyCodes(KeyType key)
+        {
+            KeyCodes.Add((VirtualKeyCode)key);
         }
 
         public void AddCharToKeyCodes(char charachter)
@@ -60,21 +67,18 @@ namespace AutoPilot.Actions
 
         private VirtualKeyCode ConvertCharToKeyCode(char character)
         {
-            // Konvertiere den Buchstaben zu einem Großbuchstaben, um einheitliche Ergebnisse zu erhalten
+            // Konvertierung des Buchstaben zu einem Großbuchstaben
             char upperCaseChar = char.ToUpper(character);
 
-            // Überprüfe, ob der Buchstabe ein gültiges ASCII-Zeichen ist
+            // Gültiges Zeichen?
             if (upperCaseChar >= 'A' && upperCaseChar <= 'Z')
             {
-                // Wenn es ein Buchstabe ist, konvertiere ihn zu VirtualKeyCode
+                // Konvertierung zu VirtualKeyCode
                 return (VirtualKeyCode)Enum.Parse(typeof(VirtualKeyCode), "VK_" + upperCaseChar);
             }
-            else
-            {
-                // Wenn es kein Buchstabe ist, gib VK_0 zurück (kann für nicht unterstützte Zeichen stehen)
-                return VirtualKeyCode.VK_0;
-            }
+
+            return VirtualKeyCode.VK_0;
+            
         }
     }
-
 }

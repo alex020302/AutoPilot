@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Security.Policy;
 using System.Windows;
 using System.Windows.Controls;
+using System.Xml;
 using AutoPilot.Actions;
 using WindowsInput.Native;
 
@@ -96,20 +97,27 @@ namespace AutoPilot.Views
 
         private async void Test(object sender, RoutedEventArgs e)
         {
+            
             //string url = "https://y2nb.com/en/download";
             //Process.Start(new ProcessStartInfo("cmd", $"/c start {url}") { CreateNoWindow = true });
             
-            Delay d = new Delay();
-            d.Milliseconds = 2000;
-            await d.Execute();
 
-            SpecialKey keyCombinationAction = new SpecialKey()
-            {
-                KeyCodes = new List<VirtualKeyCode> {VirtualKeyCode.LWIN },
-                Comment = "Simultaneous key press example"
-            };
-            keyCombinationAction.AddCharToKeyCodes('d');
-            await keyCombinationAction.Execute();
+            //SpecialKey keyCombinationAction = new SpecialKey()
+            //{
+            //    KeyCodes = new List<VirtualKeyCode> {  },
+            //    Comment = "Simultaneous key press example"
+            //};
+            //keyCombinationAction.AddKeyToKeyCodes(KeyType.Windows);
+            //keyCombinationAction.AddCharToKeyCodes('D');
+            //await keyCombinationAction.Execute();
+
+            SpecialKey n = new SpecialKey();
+            n.AddKeyToKeyCodes(KeyType.Windows);
+            n.AddCharToKeyCodes('A');
+
+
+
+
 
 
 

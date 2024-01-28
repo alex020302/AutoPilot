@@ -2,6 +2,7 @@
 using AutoPilot;
 using AutoPilot.Actions;
 using NUnit.Framework;
+using WindowsInput.Native;
 
 namespace UnitTests
 {
@@ -35,14 +36,21 @@ namespace UnitTests
                 Comment = "TestAction1"
             };
 
+            SpecialKey lSpecialKey = new SpecialKey();
+            lSpecialKey.Comment = "Test";
+            lSpecialKey.AddKeyToKeyCodes(KeyType.Windows);
+
             expectedActions.Add(lMouseClick);
+            expectedActions.Add(lSpecialKey);
 
             lJsonHandler.WriteData(expectedActions, TestPath);
             actualActions = lJsonHandler.ReadData(TestPath);
 
             AutoPilot.Actions.MouseClick actualMouseClick = (MouseClick)(actualActions.FirstOrDefault());
+            SpecialKey actualSpecialKey = (SpecialKey)(actualActions.Skip(1).FirstOrDefault());
 
             NUnit.Framework.Assert.AreEqual(100, actualMouseClick.X_Coordinate, "Fehler: JsonHandler Fehler. Path: " + TestPath);
+            NUnit.Framework.Assert.AreEqual(VirtualKeyCode.LWIN, actualSpecialKey.KeyCodes[0] , "hgiuguogiuf");
         }
 
         [Test]

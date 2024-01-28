@@ -159,6 +159,7 @@
                     <system:String>TextEmulation</system:String>
                     <system:String>DataInput</system:String>
                     <system:String>Link</system:String>
+                    <system:String>SpecialKey</system:String>
                 </ComboBox>
 
                 <Button Background="#9EA7AF" Opacity="0.8" Padding="5"

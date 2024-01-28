@@ -30,12 +30,10 @@
             HorizontalAlignment="Center"
             
         >
-                <Image Source="../Images/timer.png"
-                   Width="30"></Image>
                 <Label FontSize="40"
-                   VerticalAlignment="Center"
-                   Margin="10"
-                   FontWeight="Bold">Link</Label>
+                       VerticalAlignment="Center"
+                       Margin="10"
+                       FontWeight="Bold">Link</Label>
 
             </StackPanel>
         </StackPanel>

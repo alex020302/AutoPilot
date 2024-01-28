@@ -111,6 +111,21 @@ namespace AutoPilot.Views
                     // Hinzufügen der aktualisierten Aktion an derselben Position
                     ViewModel.Actions.Insert(selectedIndex, editFenster.zuBearbeiten);
                 }
+                else if (selectedAction is SpecialKey)
+                {
+                    // Verarbeitung
+                    SpecialKey specialKey = (SpecialKey)selectedAction;
+                    SpecialKeyEdit editFenster = new SpecialKeyEdit(specialKey);
+                    editFenster.ShowDialog();
+
+                    // Speichern derIndexposition der ausgewählten Aktion
+                    int selectedIndex = ViewModel.Actions.IndexOf(selectedAction);
+
+                    // Entfernen der alten Aktion
+                    ViewModel.Actions.RemoveAt(selectedIndex);
+                    // Hinzufügen der aktualisierten Aktion an derselben Position
+                    ViewModel.Actions.Insert(selectedIndex, editFenster.zuBearbeiten);
+                }
                 else
                 {
                     // Standardaktion, wenn der Typ nicht erkannt wird
@@ -181,6 +196,17 @@ namespace AutoPilot.Views
 
                     // Neue Aktion hinzufügen
                     ViewModel.Actions.Insert(selectedIndex + 1, newLink);
+                    break;
+
+                case "SpecialKey":
+                    SpecialKey newSpecialKey = new SpecialKey();
+
+                    // Bearbeitungsfenster öffnen um Eigenschaften festzulegen
+                    SpecialKeyEdit Edit = new SpecialKeyEdit(newSpecialKey);
+                    Edit.ShowDialog();
+
+                    // Neue Aktion hinzufügen
+                    ViewModel.Actions.Insert(selectedIndex + 1, newSpecialKey);
                     break;
 
                 default:
@@ -352,6 +378,10 @@ namespace AutoPilot.Views
                 if (action is Delay delayAction)
                 {
                     await delayAction.Execute();
+                }
+                else if (action is SpecialKey specialKey)
+                {
+                    await specialKey.Execute();
                 }
                 else
                 {

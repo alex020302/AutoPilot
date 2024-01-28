@@ -1,5 +1,6 @@
 ﻿using AutoPilot.Actions;
 using NUnit.Framework;
+using WindowsInput.Native;
 
 namespace UnitTests
 {
@@ -17,7 +18,7 @@ namespace UnitTests
                 Comment = "Test MouseClick"
             };
 
-            Assert.AreEqual(mouseClick.Y_Coordinate, 200, "TestMouseClick() hasn't passed");
+            Assert.AreEqual(mouseClick.Y_Coordinate, 200, "TestMouseClick() failed");
         }
 
         [Test]
@@ -29,7 +30,7 @@ namespace UnitTests
                 Comment = "Test Delay"
             };
 
-            Assert.AreEqual(delay.Milliseconds, 1000, "TestDelay() hasn't passed");
+            Assert.AreEqual(delay.Milliseconds, 1000, "TestDelay() failed");
         }
 
         [Test]
@@ -41,7 +42,7 @@ namespace UnitTests
                 Comment = "Test TextEmulation"
             };
 
-            Assert.AreEqual(textEmulation.Text, "Test", "TestTextEmulation() hasn't passed");
+            Assert.AreEqual(textEmulation.Text, "Test", "TestTextEmulation() failed");
         }
 
         [Test]
@@ -55,7 +56,35 @@ namespace UnitTests
                 Comment = "Test DataInput"
             };
 
-            Assert.AreEqual(dataInput.Column, 2, "TestDataInput() hasn't passed");
+            Assert.AreEqual(dataInput.Column, 2, "TestDataInput() failed");
         }
+
+        [Test]
+        public void TestLink()
+        {
+            Link link = new Link
+            {
+                Url = "www.google.de",
+                Comment = "Test Link"
+            };
+
+            Assert.AreEqual(link.Url, "www.google.de", "TestLink() failed");
+        }
+
+        [Test]
+        public void TestSpecialKey()
+        {
+            SpecialKey specialKey = new SpecialKey()
+            {
+                Comment = "Test Special Key"
+            };
+
+            specialKey.AddCharToKeyCodes('C');
+            specialKey.AddKeyToKeyCodes(KeyType.Windows);
+
+            Assert.AreEqual(specialKey.KeyCodes[0], VirtualKeyCode.VK_C, "TestSpecialKey() failed");
+            Assert.AreEqual(specialKey.KeyCodes[1], VirtualKeyCode.LWIN, "TestSpecialKey() failed");
+        }
+
     }
 }

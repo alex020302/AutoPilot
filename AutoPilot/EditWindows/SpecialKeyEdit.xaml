@@ -1,0 +1,246 @@
+﻿<Window x:Class="AutoPilot.EditWindows.SpecialKeyEdit"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AutoPilot.EditWindows"
+        xmlns:system="clr-namespace:System;assembly=System.Runtime"
+        mc:Ignorable="d"
+        Title="SpecialKeyEdit" Height="500" Width="350">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="#D9D9D9"/>
+            <Setter Property="BorderBrush" Value="#D9D9D9"/>
+            <Setter Property="Height" Value="35"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="Width" Value="150"></Setter>
+            <Setter Property="TextAlignment" Value="Center"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        </Style>
+    </Window.Resources>
+    <StackPanel
+        >
+        <StackPanel
+            
+            Background="{StaticResource DunkelBlau}">
+            <StackPanel
+            Height="100"
+            Orientation="Horizontal"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            
+        >
+                <Label FontSize="40"
+                       Margin="10"
+                       VerticalAlignment="Center"
+                       FontWeight="Bold">SpecialKey</Label>
+
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal"
+                    Margin="0,20,0,10"
+                    HorizontalAlignment="Center">
+            <Label FontSize="20" FontWeight="Bold"
+            >1. Taste:</Label>
+            <ComboBox x:Name="t1" Width="150" VerticalAlignment="Center"
+                      Padding="5"
+                      Margin="5"
+                      Background="#9EA7AF"
+            >
+                <system:String>Windows</system:String>
+                <system:String>Enter</system:String>
+                <system:String>Space</system:String>
+                <system:String>Control</system:String>
+                <system:String>Shift</system:String>
+                <system:String>Tab</system:String>
+                <system:String>Delete</system:String>
+                <system:String>A</system:String>
+                <system:String>B</system:String>
+                <system:String>C</system:String>
+                <system:String>D</system:String>
+                <system:String>E</system:String>
+                <system:String>F</system:String>
+                <system:String>G</system:String>
+                <system:String>H</system:String>
+                <system:String>I</system:String>
+                <system:String>J</system:String>
+                <system:String>K</system:String>
+                <system:String>L</system:String>
+                <system:String>M</system:String>
+                <system:String>N</system:String>
+                <system:String>O</system:String>
+                <system:String>P</system:String>
+                <system:String>Q</system:String>
+                <system:String>R</system:String>
+                <system:String>S</system:String>
+                <system:String>T</system:String>
+                <system:String>U</system:String>
+                <system:String>V</system:String>
+                <system:String>W</system:String>
+                <system:String>X</system:String>
+                <system:String>Y</system:String>
+                <system:String>Z</system:String>
+            </ComboBox>
+
+        </StackPanel>
+        <StackPanel Orientation="Horizontal"
+                    Margin="10"
+                    HorizontalAlignment="Center">
+            <Label FontSize="20" FontWeight="Bold"
+            >2. Taste:</Label>
+            <ComboBox x:Name="t2" Width="150" VerticalAlignment="Center"
+                      Padding="5"
+                      Margin="5"
+                      Background="#9EA7AF"
+            >
+                <system:String>Windows</system:String>
+                <system:String>Enter</system:String>
+                <system:String>Space</system:String>
+                <system:String>Control</system:String>
+                <system:String>Shift</system:String>
+                <system:String>Tab</system:String>
+                <system:String>Delete</system:String>
+                <system:String>A</system:String>
+                <system:String>B</system:String>
+                <system:String>C</system:String>
+                <system:String>D</system:String>
+                <system:String>E</system:String>
+                <system:String>F</system:String>
+                <system:String>G</system:String>
+                <system:String>H</system:String>
+                <system:String>I</system:String>
+                <system:String>J</system:String>
+                <system:String>K</system:String>
+                <system:String>L</system:String>
+                <system:String>M</system:String>
+                <system:String>N</system:String>
+                <system:String>O</system:String>
+                <system:String>P</system:String>
+                <system:String>Q</system:String>
+                <system:String>R</system:String>
+                <system:String>S</system:String>
+                <system:String>T</system:String>
+                <system:String>U</system:String>
+                <system:String>V</system:String>
+                <system:String>W</system:String>
+                <system:String>X</system:String>
+                <system:String>Y</system:String>
+                <system:String>Z</system:String>
+            </ComboBox>
+
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal"
+                    Margin="10"
+                    HorizontalAlignment="Center">
+            <Label FontSize="20" FontWeight="Bold"
+            >3. Taste:</Label>
+            <ComboBox x:Name="t3" Width="150" VerticalAlignment="Center"
+                      Padding="5"
+                      Margin="5"
+                      Background="#9EA7AF"
+            >
+                <system:String>Windows</system:String>
+                <system:String>Enter</system:String>
+                <system:String>Space</system:String>
+                <system:String>Control</system:String>
+                <system:String>Shift</system:String>
+                <system:String>Tab</system:String>
+                <system:String>Delete</system:String>
+                <system:String>A</system:String>
+                <system:String>B</system:String>
+                <system:String>C</system:String>
+                <system:String>D</system:String>
+                <system:String>E</system:String>
+                <system:String>F</system:String>
+                <system:String>G</system:String>
+                <system:String>H</system:String>
+                <system:String>I</system:String>
+                <system:String>J</system:String>
+                <system:String>K</system:String>
+                <system:String>L</system:String>
+                <system:String>M</system:String>
+                <system:String>N</system:String>
+                <system:String>O</system:String>
+                <system:String>P</system:String>
+                <system:String>Q</system:String>
+                <system:String>R</system:String>
+                <system:String>S</system:String>
+                <system:String>T</system:String>
+                <system:String>U</system:String>
+                <system:String>V</system:String>
+                <system:String>W</system:String>
+                <system:String>X</system:String>
+                <system:String>Y</system:String>
+                <system:String>Z</system:String>
+            </ComboBox>
+        </StackPanel>
+
+        <StackPanel Orientation="Horizontal"
+                    Margin="10"
+                    HorizontalAlignment="Center">
+            <Label FontSize="20" FontWeight="Bold"
+            >4. Taste:</Label>
+            <ComboBox x:Name="t4" Width="150" VerticalAlignment="Center"
+                      Padding="5"
+                      Margin="5"
+                      Background="#9EA7AF"
+            >
+                <system:String>Windows</system:String>
+                <system:String>Enter</system:String>
+                <system:String>Space</system:String>
+                <system:String>Control</system:String>
+                <system:String>Shift</system:String>
+                <system:String>Tab</system:String>
+                <system:String>Delete</system:String>
+                <system:String>A</system:String>
+                <system:String>B</system:String>
+                <system:String>C</system:String>
+                <system:String>D</system:String>
+                <system:String>E</system:String>
+                <system:String>F</system:String>
+                <system:String>G</system:String>
+                <system:String>H</system:String>
+                <system:String>I</system:String>
+                <system:String>J</system:String>
+                <system:String>K</system:String>
+                <system:String>L</system:String>
+                <system:String>M</system:String>
+                <system:String>N</system:String>
+                <system:String>O</system:String>
+                <system:String>P</system:String>
+                <system:String>Q</system:String>
+                <system:String>R</system:String>
+                <system:String>S</system:String>
+                <system:String>T</system:String>
+                <system:String>U</system:String>
+                <system:String>V</system:String>
+                <system:String>W</system:String>
+                <system:String>X</system:String>
+                <system:String>Y</system:String>
+                <system:String>Z</system:String>
+            </ComboBox>
+        </StackPanel>
+
+        
+            <Label FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Width="235"
+            >Kommentar:</Label>
+            <TextBox Width="235"
+                     x:Name="CommentTextBox"></TextBox>
+      
+
+
+        <Button Background="#9EA7AF" Opacity="0.8" Padding="5"
+                x:Name="t_save" Click="Save" HorizontalAlignment="Center"  VerticalAlignment="Center"
+                Width="200"   Margin="10"
+                FontSize="20" Foreground="Black" FontWeight="Bold" Content="Speichern">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="3"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+    </StackPanel>
+</Window>

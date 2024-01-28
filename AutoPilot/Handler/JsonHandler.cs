@@ -4,13 +4,17 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Windows;
 using AutoPilot.Actions;
+using WindowsInput.Native;
+using System.Linq;
+using Newtonsoft.Json.Linq;
 
 namespace AutoPilot
 {
     public class JsonHandler : FileHandler
     {
-        
+
         public void WriteData(ObservableCollection<Action> pAction, string pFilePath)
         {
             using (var workbook = new XLWorkbook())
@@ -31,7 +35,7 @@ namespace AutoPilot
             {
                 p_Actions.Add(action);
             }
-                
+
             return p_Actions;
         }
 
@@ -56,6 +60,7 @@ namespace AutoPilot
             }
 
             return actions;
+
         }
 
         public Action CreateActionFromJsonObject(Dictionary<string, object> jsonObject)
@@ -77,7 +82,8 @@ namespace AutoPilot
                     return CreateActionFromJsonObject<DataInput>(jsonObject);
                 case "Link":
                     return CreateActionFromJsonObject<Link>(jsonObject);
-                // Weitere Aktionstypen hinzufügen, wenn nötig
+                case "SpecialKey":
+                    return CreateActionFromJsonObject<SpecialKey>(jsonObject);
                 default:
                     return null; // Unbekannter Aktionstyp
             }
@@ -113,10 +119,15 @@ namespace AutoPilot
                 case Link link when jsonObject.ContainsKey("Url"):
                     link.Url = Convert.ToString(jsonObject["Url"]);
                     break;
+                case SpecialKey specialKey when jsonObject.ContainsKey("KeyCodes"):
+                    var keyCodes = ((JArray)jsonObject["KeyCodes"]).ToObject<List<int>>();
+                    specialKey.KeyCodes.AddRange(keyCodes.Select(k => (VirtualKeyCode)k));
+                    break;
+                default:
+                    return null; // Unbekannter Aktionstyp
             }
 
             return action;
         }
-
     }
 }
