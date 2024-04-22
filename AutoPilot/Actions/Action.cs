@@ -5,7 +5,7 @@
         public string Comment { get; set; }
         public string ActionType;
 
-        public virtual void Execute()
+        public async virtual void Execute()
         {
 
         }

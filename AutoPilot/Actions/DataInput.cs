@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using WindowsInput;
 
 namespace AutoPilot.Actions
@@ -25,9 +26,17 @@ namespace AutoPilot.Actions
                 InputSimulator simulator = new InputSimulator();
                 simulator.Keyboard.TextEntry(text);
             }
+            catch (FileNotFoundException ex)
+            {
+                Console.WriteLine($"Error in DataInput.Execute: Excel file not found - {ex.Message}");
+            }
+            catch (IOException ex)
+            {
+                Console.WriteLine($"Error in DataInput.Execute: Input/output error - {ex.Message}");
+            }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error in DataInput.Execute: {ex.Message}");
+                Console.WriteLine($"Error in DataInput.Execute: {ex.GetType().Name} - {ex.Message}");
             }
         }
     }
